@@ -68,3 +68,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+Todo list:
+1. create git repo and add there current implementation
+2. create text component <Text key={'title'} /> move to the folder co
+2.1 XX Make translation dropdown as separate component
+3. Move translation dropdown to header
+4. Add translation dropdown to footer
+5. Use redux for selectedLanguageKey
+6. Create router-react for two pages About and Main
+6.1  Add translations for them
+7. Add navigation menu for create pages buttons About & Main
+8. Create translations for nav menu buttons "NAV.MENU.TITLE.ABOUT" & "NAV.MENU.TITLE.MAIN"
+9.use local storage for selected language
