@@ -72,7 +72,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 Todo list:
 1. create git repo and add there current implementation
-2. create text component <Text key={'title'} /> move to the folder co
+2. create text component <Text key={'title'} /> move to the folder components
 2.1 XX Make translation dropdown as separate component
 3. Move translation dropdown to header
 4. Add translation dropdown to footer
