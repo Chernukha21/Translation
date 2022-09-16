@@ -6,8 +6,8 @@ import {changeLanguageAction} from '../redux/reducer';
 import {Link} from "react-router-dom";
 
 export const languages = [
-    {value: "ua", title: "ukrainian"},
     {value: "en", title: "english"},
+    {value: "ua", title: "ukrainian"},
     {value: "arb", title: "arabian"},
 ];
 const Main = () => {
@@ -17,7 +17,7 @@ const Main = () => {
         console.log(localStorage.languageKey);
     },[languageKey]);
     useEffect(() => {
-        languageKey  = JSON.parse(localStorage.getItem('items'));
+        languageKey  = JSON.parse(localStorage.getItem('languageKey'));
     }, []);
     const dispatch = useDispatch();
     function handleSelectChange(event) {
