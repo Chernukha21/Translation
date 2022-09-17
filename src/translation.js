@@ -1,8 +1,12 @@
-
+export const languages = [
+    {value: "en", title: "english"},
+    {value: "ua", title: "ukrainian"},
+    {value: "arb", title: "arabian"},
+];
 export default {
     "MAIN_PAGE_TITLE": {
        ua: 'Добрий день',
-       en: 'Main page title',
+       en: 'MainPage title',
        arb: 'طاب مسائك'
     },
     "MAIN_PAGE_DESCRIPTION": {
@@ -21,13 +25,13 @@ export default {
         arb: 'أعيش في كييف'
     },
     "NAV_MENU_TITLE_ABOUT": {
-        ua: 'сторiнка про щось',
-        en: 'about page',
+        ua: 'Сторiнка про мене',
+        en: 'About page',
         arb: 'صفحة المترجم'
     },
     "NAV_MENU_TITLE_MAIN": {
         ua: 'Головна сторiнка',
-        en: 'Main page',
+        en: 'MainPage',
         arb: 'الصفحة الرئيسية'
     }
 }

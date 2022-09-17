@@ -77,8 +77,8 @@ Todo list:
 3. Move translation dropdown to header
 4. Add translation dropdown to footer
 5. Use redux for selectedLanguageKey
-6. Create router-react for two pages About and Main
+6. Create router-react for two pages AboutPage and MainPage
 6.1  Add translations for them
-7. Add navigation menu for create pages buttons About & Main
+7. Add navigation menu for create pages buttons AboutPage & MainPage
 8. Create translations for nav menu buttons "NAV.MENU.TITLE.ABOUT" & "NAV.MENU.TITLE.MAIN"
 9.use local storage for selected language
