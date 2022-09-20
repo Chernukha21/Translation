@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {createStore} from "redux";
 import './index.css';
-import App from './App';
+import AppPage from './components/pages/AppPage';
 import {Provider} from "react-redux";
 import reducer from "./redux/reducer";
 
@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
       <Provider store={store}>
-          <App />
+          <AppPage />
       </Provider>
   </React.StrictMode>
 );

@@ -1,17 +1,16 @@
-import './App.css';
-import Main from "./components/pages/Main.page";
-import About from "./components/pages/About.page";
-import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom'
-import Text from "./components/Text";
-import Dropdown from "./components/Dropdown";
-import {languages} from "./translation";
 import React,{useEffect} from "react";
+import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
-import {changeLanguageAction} from "./redux/reducer";
+import Main from "./Main.page";
+import About from "./About.page";
+import Text from "../Text";
+import Dropdown from "../Dropdown";
+import {languages} from "../../translation";
+import {changeLanguageAction} from "../../redux/reducer";
+import './App.css';
 
 
-
-function App() {
+function AppPage() {
     let languageKey = useSelector(state => state.selectedLanguageKey);
     const dispatch = useDispatch();
 
@@ -54,6 +53,6 @@ function App() {
     );
 }
 
-export default App;
+export default AppPage;
 
 
