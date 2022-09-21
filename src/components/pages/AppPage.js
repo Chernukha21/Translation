@@ -13,17 +13,10 @@ import './App.css';
 function AppPage() {
     let languageKey = useSelector(state => state.selectedLanguageKey);
     const dispatch = useDispatch();
-
     function handleSelectChange(event) {
         dispatch(changeLanguageAction(event.target.value));
     }
-    useEffect(() => {
-        localStorage.setItem("languageKey", JSON.stringify(languageKey));
-        console.log(localStorage.languageKey);
-    },[languageKey]);
-    useEffect(() => {
-        languageKey  = JSON.parse(localStorage.getItem('languageKey'));
-    }, []);
+
 
     return (
         <div className="App">
