@@ -1,17 +1,19 @@
 import React, {useEffect, useState} from "react";
 import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
-import Main from "./page/Main.page";
-import About from "./page/About.page";
-import Text from "./components/Text";
-import Dropdown from "./components/Dropdown";
-import defaultTranslation from "./translation";
 import {changeLanguageAction} from "./redux/reducer";
-import {customConfigPath} from "./config";
+
 import './App.css';
 
+import MainPage from "./page/Main.page";
+import AboutPage from "./page/About.page";
 
-const client_config = 'ukraine_config';
+import Text from "./components/Text";
+import Dropdown from "./components/Dropdown";
+
+import defaultTranslation from "./translation";
+import {customConfigPath} from "./config";
+
 
 function App() {
     let languageKey = useSelector(state => state.selectedLanguageKey);
@@ -49,19 +51,19 @@ function App() {
                 <header>
                     <button>
                         <Link to="/">
-                            <Text translationKey="NAV_MENU_TITLE_MAIN" languageKey={languageKey}/>
+                            <Text translationKey="NAV_MENU_TITLE_MAIN" />
                         </Link>
                     </button>
                     <button>
                         <Link to="/about">
-                            <Text translationKey="NAV_MENU_TITLE_ABOUT" languageKey={languageKey}/>
+                            <Text translationKey="NAV_MENU_TITLE_ABOUT" />
                         </Link>
                     </button>
                     {translationDropdown}
                 </header>
                 <Routes>
-                    <Route exact path="/" element={<Main/>}/>
-                    <Route exact path="/about" element={<About/>}/>
+                    <Route exact path="/" element={<MainPage/>}/>
+                    <Route exact path="/about" element={<AboutPage/>}/>
                 </Routes>
                 <footer>
                     {translationDropdown}
