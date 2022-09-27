@@ -84,6 +84,8 @@ Todo list:
 9.use local storage for selected language
 
    10. Change tab translations 
-   11. Change favicon 
-   12. Move header and footer dropdown right 
-   13. Use icons of flags instead languages keys
+   11. Change favicon (done)
+   12. Move header and footer dropdown right (done)
+   13. Use icons of flags instead languages keys(done but its bullshit )
+   14. if customtranslation doesn't exist we take english if english doesn't exist we write "translation doesn't exist"
+
