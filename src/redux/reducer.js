@@ -1,5 +1,10 @@
+import englishConfig from "../english_config"
+
 const  initialState = {
-    selectedLanguageKey: 'gb',
+    languageKey: "GB",
+    translations: {
+        ...englishConfig
+    }
 }
 
 const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
@@ -9,12 +14,14 @@ const reducer = (state = initialState, action) => {
         case CHANGE_LANGUAGE:
             return {
                 ...state,
-                selectedLanguageKey: action.payload.selectedLanguageKey
+                translations: {
+                   ...action.payload
+                }
             }
         default:
             return state;
     }
 }
-export const changeLanguageAction = (value) => ({type: CHANGE_LANGUAGE, payload: {selectedLanguageKey: value}});
+// export const changeLanguageAction = (value) => ({type: CHANGE_LANGUAGE, payload: {selectedLanguageKey: value}});
 export default reducer;
 

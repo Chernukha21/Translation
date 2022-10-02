@@ -1,12 +1,8 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import translation from "../english_config";
 
-import translation from "../translation";
-
-const Text = ({translationKey}) => {
-    let languageKey = useSelector(state => state.selectedLanguageKey);
-
-    return <div>{translation[translationKey][languageKey] || `translation doesn't exist`}</div>
+const Text = ({children}) => {
+    return <div>{children}</div>
 };
 
 export default Text;

@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
-import {changeLanguageAction} from "./redux/reducer";
+// import {changeLanguageAction} from "./redux/reducer";
 
 import './App.css';
 
@@ -10,58 +10,32 @@ import AboutPage from "./page/About.page";
 
 import Text from "./components/Text";
 import ReactFlagsSelect from 'react-flags-select';
-import defaultTranslation from "./translation";
-import {customConfigPath} from "./config";
+import {callTranslation} from "./actions";
+
+const translationMapper = {
+    "UA": "ukraine_config",
+    "TR": "turkish_config",
+    "GB": "english_config"
+}
 
 
 function App() {
-    let languageKey = useSelector(state => state.selectedLanguageKey);
-    const [languages, setLanguages] = useState([defaultTranslation.language]);
-    const [translations, setTranslations] = useState(defaultTranslation);
-    const [selected, setSelected] = useState('');
+    const initialLanguage = useSelector(state => state.languageKey);
     const dispatch = useDispatch();
 
-    function handleSelectChange(event) {
-        console.log(event);
-        dispatch(changeLanguageAction(event.target.value));
+    async function handleSelectChange(value) {
+    console.log(translationMapper[value])
+        dispatch(callTranslation(translationMapper[value]))
     }
 
-    useEffect(() => {
-        async function callTranslation() {
-            try {
-                const response = await fetch(`https://raw.githubusercontent.com/Chernukha21/${customConfigPath}/main/translation.json`);
-                const customTranslation = await response.json();
-                const keys = Object.keys(defaultTranslation).filter(key => key !== 'language');
-                const translation = {};
-                if(!customTranslation){
-                    defaultTranslation['language'].value = "gb";
-                }
-                keys.forEach(key => {
-                    translation[key] = Object.assign(defaultTranslation[key], customTranslation[key]);
-                })
 
-                const languages = [customTranslation['language'], defaultTranslation['language']];
-                setLanguages(languages);
-                setTranslations(translation);
-            }catch (err){
-                console.log(err);
-            }
 
-        }
-
-        callTranslation();
-
-    }, [])
-    // const codes =
     const translationDropdown = <ReactFlagsSelect
                                     className="dropdown"
-                                    selected={languageKey}
-                                    countries={[...languages.map(el => el.value.toUpperCase())]}
-                                    options={languages}
-                                    defaultValue={languageKey}
-                                    defaultCountry={languageKey.toUpperCase()}
-                                    onSelect={(code) => dispatch(changeLanguageAction(code.toLowerCase()))}
-                                    changeHandler={handleSelectChange}
+                                    selected={initialLanguage}
+                                    countries={[...Object.keys(translationMapper)]}
+                                    // onSelect={(code) => dispatch(changeLanguageAction(code.toLowerCase()))}
+                                    onSelect={handleSelectChange}
                                     optionsSize={14}
                                 />;
 
@@ -71,12 +45,12 @@ function App() {
                 <header>
                     <button>
                         <Link to="/">
-                            <Text translationKey="NAV_MENU_TITLE_MAIN" />
+                            <Text>main</Text>
                         </Link>
                     </button>
                     <button>
                         <Link to="/about">
-                            <Text translationKey="NAV_MENU_TITLE_ABOUT" />
+                            <Text>about</Text>
                         </Link>
                     </button>
                     {translationDropdown}
@@ -85,7 +59,7 @@ function App() {
                     <Route exact path="/" element={<MainPage/>}/>
                     <Route exact path="/about" element={<AboutPage/>}/>
                 </Routes>
-                <footer>{translationDropdown}</footer>
+                {/*<footer>{translationDropdown}</footer>*/}
             </Router>
         </div>
     );

@@ -3,12 +3,12 @@ import Text from "../components/Text";
 import {useSelector} from "react-redux";
 
 const Main = () => {
-    let languageKey = useSelector(state => state.selectedLanguageKey);
+    let {MAIN_PAGE_TITLE, MAIN_PAGE_DESCRIPTION} = useSelector(state => state.translations);
     return (
         <>
             <main>
-                <Text translationKey="MAIN_PAGE_TITLE" languageKey={languageKey}/>
-                <Text translationKey="MAIN_PAGE_DESCRIPTION" languageKey={languageKey}/>
+                <Text >{MAIN_PAGE_TITLE} </Text>
+                <Text>{MAIN_PAGE_DESCRIPTION}</Text>
             </main>
         </>
     );
