@@ -7,18 +7,17 @@ import './index.css';
 import App from './App';
 import {Provider} from "react-redux";
 import reducer from "./redux/reducer";
+import english_config from "./english_config";
 
-const composedEnhancer = composeWithDevTools(applyMiddleware(thunk))
-const store = createStore(reducer, composedEnhancer);
+const persistedState = localStorage.getItem('languageKey')
+    ? JSON.parse(localStorage.getItem('languageKey'))
+    : {}
 
-// const persistedState = localStorage.getItem('languageKey')
-//     ? JSON.parse(localStorage.getItem('languageKey'))
-//     : {}
-//
-//
-// store.subscribe(() => {
-//     localStorage.setItem('languageKey', JSON.stringify(store.getState()));
-// });
+const store = createStore(reducer,persistedState, applyMiddleware(thunk));
+
+store.subscribe(() => {
+    localStorage.setItem('languageKey', JSON.stringify(store.getState()));
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
