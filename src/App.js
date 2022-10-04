@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
-import {changeLanguageAction} from "./redux/reducer";
-
 import './App.css';
 
 import MainPage from "./page/Main.page";
@@ -10,60 +8,26 @@ import AboutPage from "./page/About.page";
 
 import Text from "./components/Text";
 import ReactFlagsSelect from 'react-flags-select';
-import defaultTranslation from "./translation";
-import {customConfigPath} from "./config";
+import {callTranslation} from "./redux/reducer";
 
 
 function App() {
-    let languageKey = useSelector(state => state.selectedLanguageKey);
-    const [languages, setLanguages] = useState([defaultTranslation.language]);
-    const [translations, setTranslations] = useState(defaultTranslation);
-    const [selected, setSelected] = useState('');
+    const initialLanguage = useSelector(state => state.languageKey);
+    const titles = useSelector(state => state.translations);
     const dispatch = useDispatch();
 
-    function handleSelectChange(event) {
-        console.log(event);
-        dispatch(changeLanguageAction(event.target.value));
+    async function handleSelectChange(value) {
+        dispatch(callTranslation(value))
     }
 
-    useEffect(() => {
-        async function callTranslation() {
-            try {
-                const response = await fetch(`https://raw.githubusercontent.com/Chernukha21/${customConfigPath}/main/translation.json`);
-                const customTranslation = await response.json();
-                const keys = Object.keys(defaultTranslation).filter(key => key !== 'language');
-                const translation = {};
-                if(!customTranslation){
-                    defaultTranslation['language'].value = "gb";
-                }
-                keys.forEach(key => {
-                    translation[key] = Object.assign(defaultTranslation[key], customTranslation[key]);
-                })
 
-                const languages = [customTranslation['language'], defaultTranslation['language']];
-                setLanguages(languages);
-                setTranslations(translation);
-            }catch (err){
-                console.log(err);
-            }
-
-        }
-
-        callTranslation();
-
-    }, [])
-    // const codes =
     const translationDropdown = <ReactFlagsSelect
-                                    className="dropdown"
-                                    selected={languageKey}
-                                    countries={[...languages.map(el => el.value.toUpperCase())]}
-                                    options={languages}
-                                    defaultValue={languageKey}
-                                    defaultCountry={languageKey.toUpperCase()}
-                                    onSelect={(code) => dispatch(changeLanguageAction(code.toLowerCase()))}
-                                    changeHandler={handleSelectChange}
-                                    optionsSize={14}
-                                />;
+        className="dropdown"
+        selected={initialLanguage}
+        countries={["GB", "TR", "UA"]}
+        onSelect={handleSelectChange}
+        optionsSize={14}
+    />;
 
     return (
         <div className="App">
@@ -71,12 +35,12 @@ function App() {
                 <header>
                     <button>
                         <Link to="/">
-                            <Text translationKey="NAV_MENU_TITLE_MAIN" />
+                            <Text children={titles}>{titles.NAV_MENU_TITLE_MAIN}</Text>
                         </Link>
                     </button>
                     <button>
                         <Link to="/about">
-                            <Text translationKey="NAV_MENU_TITLE_ABOUT" />
+                            <Text children={titles}>{titles.NAV_MENU_TITLE_ABOUT}</Text>
                         </Link>
                     </button>
                     {translationDropdown}

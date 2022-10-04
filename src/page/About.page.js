@@ -3,11 +3,13 @@ import {useSelector} from "react-redux";
 import Text from "../components/Text";
 
 const AboutPage = ({options}) => {
-    const languageKey = useSelector(state => state.selectedLanguageKey);
+    const{ABOUT_PAGE_CONTACT_TITLE}  = useSelector(state => state.translations);
+
+    console.log(ABOUT_PAGE_CONTACT_TITLE)
     return (
         <>
             <main>
-                <Text languageKey={languageKey} translationKey="ABOUT_PAGE_CONTACT_TITLE"/>
+                <Text>{ABOUT_PAGE_CONTACT_TITLE}</Text>
             </main>
         </>
     );
