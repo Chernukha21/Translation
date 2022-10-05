@@ -88,4 +88,7 @@ Todo list:
    12. Move header and footer dropdown right (done)
    13. Use icons of flags instead languages keys(done but its bullshit )
    14. if customtranslation doesn't exist we take english if english doesn't exist we write "translation doesn't exist"
+   15. Change title of document by value of tab from app
+   16. Put query app into iframe on the side and fix its position
+   17. 
 
