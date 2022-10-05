@@ -1,12 +1,12 @@
 import React from 'react';
-import Text from "../components/Text";
+import useResolveTranslation from "../useResolveTranslation";
 
 const Main = () => {
     return (
         <>
             <main>
-                <Text tKey="MAIN_PAGE_TITLE" />
-                <Text tKey="MAIN_PAGE_DESCRIPTION" />
+                {useResolveTranslation("MAIN_PAGE_TITLE")}
+                {useResolveTranslation("MAIN_PAGE_DESCRIPTION")}
             </main>
         </>
     );

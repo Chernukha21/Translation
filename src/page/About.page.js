@@ -1,11 +1,11 @@
 import React from 'react';
-import Text from "../components/Text";
+import useResolveTranslation from "../useResolveTranslation";
 
 const AboutPage = ({options}) => {
     return (
         <>
             <main>
-                <Text tKey="ABOUT_PAGE_CONTACT_TITLE" />
+                {useResolveTranslation("ABOUT_PAGE_CONTACT_TITLE")}
             </main>
         </>
     );

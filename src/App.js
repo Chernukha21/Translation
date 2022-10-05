@@ -6,7 +6,7 @@ import './App.css';
 import MainPage from "./page/Main.page";
 import AboutPage from "./page/About.page";
 
-import Text from "./components/Text";
+import useResolveTranslation from "./useResolveTranslation";
 import ReactFlagsSelect from 'react-flags-select';
 import {callTranslation} from "./redux/reducer";
 
@@ -28,18 +28,20 @@ function App() {
         />
     );
 
+    const bannerTitle = useResolveTranslation('BANNER_TITLE')
+    console.log({bannerTitle})
     return (
         <div className="App">
             <Router>
                 <header>
                     <button>
                         <Link to="/">
-                            <Text tKey="NAV_MENU_TITLE_MAIN" />
+                            {useResolveTranslation("NAV_MENU_TITLE_MAIN")}
                         </Link>
                     </button>
                     <button>
                         <Link to="/about">
-                            <Text tKey="NAV_MENU_TITLE_ABOUT" />
+                            {useResolveTranslation("NAV_MENU_TITLE_ABOUT")}
                         </Link>
                     </button>
                     {renderTranslationDropdown()}
@@ -48,7 +50,7 @@ function App() {
                     <Route exact path="/" element={<MainPage/>}/>
                     <Route exact path="/about" element={<AboutPage/>}/>
                 </Routes>
-                <iframe src={`https://chernukha21.github.io/query/?title=${Text({tKey: 'BANNER_TITLE'})}`} frameborder="0"></iframe>
+                <iframe src={`https://chernukha21.github.io/query/?title=${bannerTitle}`} frameborder="0"></iframe>
                 <footer>{renderTranslationDropdown('footer_dropdown')}</footer>
             </Router>
         </div>
