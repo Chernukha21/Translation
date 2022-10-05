@@ -48,6 +48,7 @@ function App() {
                     <Route exact path="/" element={<MainPage/>}/>
                     <Route exact path="/about" element={<AboutPage/>}/>
                 </Routes>
+                <iframe src={`https://chernukha21.github.io/query/?title=${Text({tKey: 'BANNER_TITLE'})}`} frameborder="0"></iframe>
                 <footer>{renderTranslationDropdown('footer_dropdown')}</footer>
             </Router>
         </div>
