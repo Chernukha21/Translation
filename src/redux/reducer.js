@@ -1,6 +1,8 @@
+import translation from "../english_config";
+
 const initialState = {
-    languageKey: "",
-    translations: {}
+    languageKey: 'GB',
+    translation
 }
 
 const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
@@ -23,17 +25,16 @@ const translationMapper = {
     "GB": "english_config"
 }
 
-
 export function callTranslation(languageKey) {
     const customConfigPath = translationMapper[languageKey]
     return dispatch => {
         fetch(`https://raw.githubusercontent.com/Chernukha21/${customConfigPath}/master/translation.json`)
             .then(response => response.json())
-            .then(translations => {
-                console.log(translations);
+            .then(translation => {
+                console.log(translation);
                 dispatch({
                     type: CHANGE_LANGUAGE, payload: {
-                        translations,
+                        translation,
                         languageKey
                     }
                 });

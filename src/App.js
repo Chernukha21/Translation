@@ -10,24 +10,23 @@ import Text from "./components/Text";
 import ReactFlagsSelect from 'react-flags-select';
 import {callTranslation} from "./redux/reducer";
 
-
 function App() {
     const initialLanguage = useSelector(state => state.languageKey);
-    const titles = useSelector(state => state.translations);
     const dispatch = useDispatch();
 
-    async function handleSelectChange(value) {
-        dispatch(callTranslation(value))
+    async function handleSelectChange(languageKey) {
+        dispatch(callTranslation(languageKey))
     }
 
-
-    const translationDropdown = <ReactFlagsSelect
-        className="dropdown"
-        selected={initialLanguage}
-        countries={["GB", "TR", "UA"]}
-        onSelect={handleSelectChange}
-        optionsSize={14}
-    />;
+    const renderTranslationDropdown = (className) => (
+        <ReactFlagsSelect
+            className={`dropdown ${className}`}
+            selected={initialLanguage}
+            countries={["GB", "TR", "UA"]}
+            onSelect={handleSelectChange}
+            optionsSize={14}
+        />
+    );
 
     return (
         <div className="App">
@@ -35,21 +34,21 @@ function App() {
                 <header>
                     <button>
                         <Link to="/">
-                            <Text children={titles}>{titles.NAV_MENU_TITLE_MAIN}</Text>
+                            <Text tKey="NAV_MENU_TITLE_MAIN" />
                         </Link>
                     </button>
                     <button>
                         <Link to="/about">
-                            <Text children={titles}>{titles.NAV_MENU_TITLE_ABOUT}</Text>
+                            <Text tKey="NAV_MENU_TITLE_ABOUT" />
                         </Link>
                     </button>
-                    {translationDropdown}
+                    {renderTranslationDropdown()}
                 </header>
                 <Routes>
                     <Route exact path="/" element={<MainPage/>}/>
                     <Route exact path="/about" element={<AboutPage/>}/>
                 </Routes>
-                <footer>{translationDropdown}</footer>
+                <footer>{renderTranslationDropdown('footer_dropdown')}</footer>
             </Router>
         </div>
     );
