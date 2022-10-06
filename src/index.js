@@ -1,22 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {applyMiddleware, compose, createStore} from "redux";
-import { composeWithDevTools } from 'redux-devtools-extension'
+import {applyMiddleware, createStore} from "redux";
 import thunk from "redux-thunk";
 import './index.css';
 import App from './App';
 import {Provider} from "react-redux";
-import reducer from "./redux/reducer";
-import english_config from "./english_config";
+import reducer,{initialState} from "./redux/reducer";
 
-const persistedState = localStorage.getItem('languageKey')
-    ? JSON.parse(localStorage.getItem('languageKey'))
-    : {}
+const browserState = localStorage.getItem('store');
+const persistedState = browserState ? JSON.parse(browserState) : initialState;
 
 const store = createStore(reducer,persistedState, applyMiddleware(thunk));
 
 store.subscribe(() => {
-    localStorage.setItem('languageKey', JSON.stringify(store.getState()));
+    localStorage.setItem('store', JSON.stringify(store.getState()));
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

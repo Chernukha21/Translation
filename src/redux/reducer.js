@@ -1,6 +1,6 @@
 import translation from "../english_config";
 
-const initialState = {
+export const initialState = {
     languageKey: 'GB',
     translation
 }

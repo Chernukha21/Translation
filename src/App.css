@@ -3,8 +3,9 @@
 }
 
 #root {
-    width: 800px;
+    max-width: 800px;
     margin: 0 auto;
+    position: relative;
 }
 
 .App {
@@ -30,6 +31,14 @@ main {
 .dropdown{
     display: block;
     margin: 0 0 0 auto;
+}
+.frame {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 110px;
+    width: 200px;
+    height: 100px;
 }
 footer {
     flex-shrink: 0;

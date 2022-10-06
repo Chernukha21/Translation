@@ -29,7 +29,6 @@ function App() {
     );
 
     const bannerTitle = useResolveTranslation('BANNER_TITLE')
-    console.log({bannerTitle})
     return (
         <div className="App">
             <Router>
@@ -50,7 +49,9 @@ function App() {
                     <Route exact path="/" element={<MainPage/>}/>
                     <Route exact path="/about" element={<AboutPage/>}/>
                 </Routes>
-                <iframe src={`https://chernukha21.github.io/query/?title=${bannerTitle}`} frameborder="0"></iframe>
+                <div className="frame">
+                    <iframe src={`https://chernukha21.github.io/query/?title=${bannerTitle}`}></iframe>
+                </div>
                 <footer>{renderTranslationDropdown('footer_dropdown')}</footer>
             </Router>
         </div>
