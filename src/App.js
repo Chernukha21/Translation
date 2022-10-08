@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import './App.css';
@@ -13,6 +13,10 @@ import {callTranslation} from "./redux/reducer";
 function App() {
     const initialLanguage = useSelector(state => state.languageKey);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        document.title = initialLanguage;
+    },[initialLanguage]);
 
     async function handleSelectChange(languageKey) {
         dispatch(callTranslation(languageKey))
