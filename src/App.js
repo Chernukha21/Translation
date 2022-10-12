@@ -6,19 +6,20 @@ import './App.css';
 import MainPage from "./page/Main.page";
 import AboutPage from "./page/About.page";
 
-import useResolveTranslation from "./useResolveTranslation";
+import ResolveTranslation from "./ResolveTranslation";
 import ReactFlagsSelect from 'react-flags-select';
 import {callTranslation} from "./redux/reducer";
 
 function App() {
     const initialLanguage = useSelector(state => state.languageKey);
     const dispatch = useDispatch();
+    const translation = useSelector(state => state.translation);
 
     useEffect(() => {
-        document.title = initialLanguage;
-    },[initialLanguage]);
+        document.title = translation.MAIN_PAGE_TITLE;
+    },[translation.MAIN_PAGE_TITLE]);
 
-    async function handleSelectChange(languageKey) {
+    function handleSelectChange(languageKey) {
         dispatch(callTranslation(languageKey))
     }
 
@@ -32,19 +33,19 @@ function App() {
         />
     );
 
-    const bannerTitle = useResolveTranslation('BANNER_TITLE')
+    const bannerTitle = ResolveTranslation('BANNER_TITLE')
     return (
         <div className="App">
             <Router>
                 <header>
                     <button>
                         <Link to="/">
-                            {useResolveTranslation("NAV_MENU_TITLE_MAIN")}
+                            {ResolveTranslation("NAV_MENU_TITLE_MAIN")}
                         </Link>
                     </button>
                     <button>
                         <Link to="/about">
-                            {useResolveTranslation("NAV_MENU_TITLE_ABOUT")}
+                            {ResolveTranslation("NAV_MENU_TITLE_ABOUT")}
                         </Link>
                     </button>
                     {renderTranslationDropdown()}

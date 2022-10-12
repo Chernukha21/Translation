@@ -6,7 +6,6 @@ export const initialState = {
 }
 
 const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
-
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case CHANGE_LANGUAGE:
@@ -26,12 +25,11 @@ const translationMapper = {
 }
 
 export function callTranslation(languageKey) {
-    const customConfigPath = translationMapper[languageKey]
+    const customConfigPath = translationMapper[languageKey];
     return dispatch => {
         fetch(`https://raw.githubusercontent.com/Chernukha21/${customConfigPath}/master/translation.json`)
             .then(response => response.json())
             .then(translation => {
-                console.log(translation);
                 dispatch({
                     type: CHANGE_LANGUAGE, payload: {
                         translation,
@@ -43,6 +41,5 @@ export function callTranslation(languageKey) {
         })
     }
 }
-
 export default reducer;
 

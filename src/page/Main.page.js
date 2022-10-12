@@ -1,5 +1,5 @@
 import React from 'react';
-import useResolveTranslation from "../useResolveTranslation";
+import useResolveTranslation from "../ResolveTranslation";
 
 const Main = () => {
     return (

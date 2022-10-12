@@ -1,7 +1,14 @@
-import React from 'react';
-import useResolveTranslation from "../useResolveTranslation";
+import React,{useEffect} from 'react';
+import useResolveTranslation from "../ResolveTranslation";
+import {useSelector} from "react-redux";
 
-const AboutPage = ({options}) => {
+const AboutPage = () => {
+    const translation = useSelector(state => state.translation);
+
+    useEffect(() => {
+        document.title = translation.NAV_MENU_TITLE_ABOUT;
+    },[translation.NAV_MENU_TITLE_ABOUT]);
+
     return (
         <>
             <main>
