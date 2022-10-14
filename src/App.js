@@ -1,14 +1,23 @@
 import React,{useEffect} from "react";
+import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import './App.css';
-
 import MainPage from "./page/Main.page";
 import AboutPage from "./page/About.page";
-
 import ResolveTranslation from "./ResolveTranslation";
 import ReactFlagsSelect from 'react-flags-select';
 import {callTranslation} from "./redux/reducer";
+import Frame from "./Frame";
+
+
+const Portal = (props) => {
+    const node = document.querySelector('div');
+    document.body.appendChild(node);
+    return ReactDOM.createPortal(props.children, node);
+}
+
+
 
 function App() {
     const initialLanguage = useSelector(state => state.languageKey);
@@ -33,7 +42,7 @@ function App() {
         />
     );
 
-    const bannerTitle = ResolveTranslation('BANNER_TITLE')
+
     return (
         <div className="App">
             <Router>
@@ -54,11 +63,11 @@ function App() {
                     <Route exact path="/" element={<MainPage/>}/>
                     <Route exact path="/about" element={<AboutPage/>}/>
                 </Routes>
-                <div className="frame">
-                    <iframe src={`https://chernukha21.github.io/query/?title=${bannerTitle}`}></iframe>
-                </div>
                 <footer>{renderTranslationDropdown('footer_dropdown')}</footer>
             </Router>
+            <Portal>
+                <Frame/>
+            </Portal>
         </div>
     );
 }
