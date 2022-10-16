@@ -6,9 +6,10 @@ import './App.css';
 import MainPage from "./page/Main.page";
 import AboutPage from "./page/About.page";
 import ResolveTranslation from "./ResolveTranslation";
+import Frame from "./Frame";
 import ReactFlagsSelect from 'react-flags-select';
 import {callTranslation} from "./redux/reducer";
-import Frame from "./Frame";
+
 
 
 const Portal = (props) => {
@@ -17,7 +18,11 @@ const Portal = (props) => {
     return ReactDOM.createPortal(props.children, node);
 }
 
-
+const routeTranslation = {
+    UA: 'про',
+    GB: 'about',
+    TR: 'صفحة المترجم'
+}
 
 function App() {
     const initialLanguage = useSelector(state => state.languageKey);
@@ -53,7 +58,7 @@ function App() {
                         </Link>
                     </button>
                     <button>
-                        <Link to="/about">
+                        <Link to={routeTranslation[initialLanguage]}>
                             {ResolveTranslation("NAV_MENU_TITLE_ABOUT")}
                         </Link>
                     </button>
@@ -61,7 +66,7 @@ function App() {
                 </header>
                 <Routes>
                     <Route exact path="/" element={<MainPage/>}/>
-                    <Route exact path="/about" element={<AboutPage/>}/>
+                    <Route exact path={routeTranslation[initialLanguage]} element={<AboutPage/>}/>
                 </Routes>
                 <footer>{renderTranslationDropdown('footer_dropdown')}</footer>
             </Router>
